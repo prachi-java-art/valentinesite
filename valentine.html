@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Be My Valentine 💍</title>
+
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: linear-gradient(to top, #ffd1dc, #ffe6f0);
+            text-align: center;
+            font-family: "Segoe UI", Arial, sans-serif;
+            overflow: hidden;
+            color: #4a2c2a;
+        }
+
+        h1 {
+            margin-top: 120px;
+            font-size: 42px;
+            animation: fadeIn 2s ease forwards;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            opacity: 0;
+            animation: fadeIn 3s ease forwards;
+            animation-delay: 1s;
+        }
+
+        .container {
+            margin-top: 40px;
+        }
+
+        button {
+            padding: 16px 36px;
+            font-size: 18px;
+            border-radius: 40px;
+            border: none;
+            cursor: pointer;
+            margin: 20px;
+            background: white;
+            color: #e75480;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
+        }
+
+        .yes-glow {
+            animation: glow 2s infinite;
+        }
+
+        #loveMessage {
+            margin-top: 40px;
+            font-size: 22px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+            opacity: 0;
+            animation: fadeInUp 2s ease forwards;
+            animation-delay: 0.5s;
+        }
+
+        /* Floating hearts */
+        .float-heart {
+            position: fixed;
+            bottom: -20px;
+            font-size: 22px;
+            animation: slowFloat 10s linear forwards;
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        /* Animations */
+        @keyframes slowFloat {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 0;
+            }
+            20% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-120vh) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes glow {
+            0% { box-shadow: 0 0 10px #ff9bb3; }
+            50% { box-shadow: 0 0 25px #ff5c8a; }
+            100% { box-shadow: 0 0 10px #ff9bb3; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Will You Be My Valentine? 💖</h1>
+    <p class="subtitle">A small question… from a very full heart 🌸</p>
+
+    <div class="container">
+        <button class="yes-glow" onclick="yes()">YES 💕</button>
+        <button id="noBtn" onmouseover="moveNo()">NO 😢</button>
+    </div>
+
+    <div id="loveMessage"></div>
+
+    <script>
+        let heartInterval = null;
+        const hearts = ["💗", "💖", "🤍", "🌸"];
+
+        function yes() {
+            document.getElementById("loveMessage").innerHTML =
+                "You just turned an ordinary moment into a memory I’ll carry forever. 🌷<br><br>" +
+                "From today and every day after, I choose you — in laughter, in quiet moments, and in all the little in-betweens. " +
+                "Thank you for being my favorite place to be. ❤️";
+
+            // Hide the NO button
+            document.getElementById("noBtn").style.display = "none";
+
+            // Start slow floating hearts (only once)
+            if (!heartInterval) {
+                heartInterval = setInterval(createSlowHeart, 500);
+            }
+        }
+
+        function createSlowHeart() {
+            const heart = document.createElement("div");
+            heart.className = "float-heart";
+            heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.fontSize = (18 + Math.random() * 22) + "px";
+
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 10000);
+        }
+
+        function moveNo() {
+            const btn = document.getElementById("noBtn");
+            btn.style.position = "absolute";
+            btn.style.left = Math.random() * 80 + "vw";
+            btn.style.top = Math.random() * 80 + "vh";
+        }
+    </script>
+
+</body>
+</html>
