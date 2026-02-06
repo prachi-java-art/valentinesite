@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Will You Be Mine?</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="center">
+
+    <div class="card">
+        <div class="heart">❤️</div>
+        <h1>Will You Be My Valentine?</h1>
+
+        <div class="btn-container">
+            <button id="yesBtn">Yes 💖</button>
+            <button id="noBtn">No 🙈</button>
+        </div>
+    </div>
+
+<script>
+const noBtn = document.getElementById("noBtn");
+
+noBtn.addEventListener("mouseover", () => {
+    noBtn.style.position = "absolute";
+    noBtn.style.left = Math.random() * window.innerWidth + "px";
+    noBtn.style.top = Math.random() * window.innerHeight + "px";
+});
+
+document.getElementById("yesBtn").onclick = function() {
+    window.location.href = "gallery.html";
+};
+</script>
+
+</body>
+</html>
